@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  maintainer:
+    build:
+      context: .
+    container_name: db_maintainer_app_V1.0
+    restart: always
+    ports:
+      - "8082:8082"
+    environment:
+      COMMENT-COUNT-MAX: 100
+      DB-MAINTAINER_CRON: '0 0 */1 * * *'
+      dbURL: jdbc:postgresql://host.docker.internal:5432/kafka
+    networks:
+      kafka-network:
+
+networks:
+  kafka-network:
+
